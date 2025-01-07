@@ -1,3 +1,4 @@
+// Data
 const data = [
   {
     id: "1",
@@ -25,8 +26,10 @@ const data = [
   },
 ];
 
+//Getting the div container
 const accordionWrapper = document.querySelector(".accordion");
 
+//Function to render required html tags with array data
 createAccordionData = () => {
   accordionWrapper.innerHTML = data
     .map(
@@ -44,17 +47,23 @@ createAccordionData = () => {
     .join(" ");
 };
 
+//function call
 createAccordionData();
 
+//getting all the accordion items
 const getAccordionTitles = document.querySelectorAll(".accordion-title");
 
+//looping thru all of accordion items - adding click listener
 getAccordionTitles.forEach((currentItem) => {
   currentItem.addEventListener("click", (e) => {
     console.log("clicked");
 
+    //if already have active class, remove
     if (currentItem.classList.contains("active")) {
       currentItem.classList.remove("active");
     } else {
+      //else, get all the accordion items that have active class then remove them -> add active class
+      //to the clicked acccordion item
       let getAlreadyAddedActiveClasses = document.querySelectorAll(".active");
 
       getAlreadyAddedActiveClasses.forEach((currentActiveItem) => {
