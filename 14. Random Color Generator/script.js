@@ -24,10 +24,27 @@ rgbBtn.addEventListener("click", () => {
   const green = document.querySelector("#green").value;
   const blue = document.querySelector("#blue").value;
 
-  const rgbColorValue = document.querySelector("rgb-color-value");
+  const rgbColorValue = document.querySelector(".rgb-color-value");
   const rgbColorContainer = document.querySelector(`.rgb-color-container`);
 
   rgbColorContainer.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
   rgbBtn.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
-  rgbColorValue.style.textContent = `rgb(${red}, ${green}, ${blue})`;
+  rgbColorValue.textContent = `rgb(${red}, ${green}, ${blue})`;
 });
+
+//copy to clipboard functionality
+
+const hexCopyBtn = document.querySelector(".hexCopyBtn");
+const rgbCopyBtn = document.querySelector(".rgbCopyBtn");
+
+const hexCopyToClipboard = () => {
+  navigator.clipboard.writeText(hexColorValue.textContent);
+  alert("Color is Copied to Clipboard");
+};
+hexCopyBtn.addEventListener("click", hexCopyToClipboard);
+
+const rgbCopyToClipboard = () => {
+  navigator.clipboard.writeText(rgbColorValue.textContent);
+  alert("Color is Copied to Clipboard");
+};
+rgbCopyBtn.addEventListener("click", hexCopyToClipboard);
