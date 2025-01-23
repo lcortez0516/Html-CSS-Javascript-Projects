@@ -2,26 +2,78 @@
 
 const newTask = document.querySelector(".newTask");
 const addBtn = document.querySelector(".addBtn");
-const taskContainer = document.querySelector(".taskContainer");
+const tasksContainer = document.querySelector(".taskContainer");
 
+// add task functionality
 addBtn.addEventListener("click", (e) => {
-  // new Li
-  const newLi = document.createElement("li");
-  newLi.classList.add("relative");
+  if (newTask.value == "") {
+    console.log("none");
+  } else {
+    const liClass = ["flex", "justify-between", "items-center", "my-2"];
+    const eachTaskContainerClass = ["task", "flex", "items-center"];
+    const circleDivClass = [
+      "w-4",
+      "h-4",
+      "border-slate-800",
+      "border-1",
+      "rounded-[50%]",
+      "cursor-pointer",
+    ];
+    const iClass = ["fa", "fa-delete-left", "text-red-500", "cursor-pointer"];
+    // new Li
+    const li = document.createElement("li");
+    li.classList.add(...liClass);
+    // New input box Container
+    const eachTaskContainer = document.createElement("div");
+    eachTaskContainer.classList.add(...eachTaskContainerClass);
+    // New Circle
+    const newCircle = document.createElement("div");
+    newCircle.classList.add(...circleDivClass);
+    //newP
+    const newP = document.createElement("p");
+    newP.classList.add("ml-5", "cursor-pointer", "text-slate-800");
+    newP.textContent = newTask.value;
 
-  //new div
-  const newDiv = document.createElement("div");
-  newDiv.classList.add(
-    "absolute top-0 left-0 rounded-[50%] h-5 border-slate-400 border-1 w-5 mr-5"
-  );
+    // new icon
+    const newIcon = document.createElement("i");
+    newIcon.classList.add(...iClass);
 
-  // new p
-  const newP = document.createElement("p");
-  newP.classList.add("ml-10");
-  newP.textContent = newTask;
-
-  //   render
-  newDiv.append(newP);
-  newLi.append(newDiv);
-  taskContainer.append(newLi);
+    // render
+    eachTaskContainer.append(newCircle);
+    eachTaskContainer.append(newP);
+    li.append(eachTaskContainer);
+    li.append(newIcon);
+    tasksContainer.append(li);
+    // clear the input field
+    newTask.value = "";
+    saveData();
+  }
 });
+
+// Mark and delete functionality
+tasksContainer.addEventListener("click", (e) => {
+  console.log(e.target.tagName);
+  if (e.target.tagName == "I") {
+    e.target.parentElement.remove();
+    saveData();
+  } else {
+    const targetTask = e.target.closest("li");
+    const selectedCircle = targetTask.firstElementChild.firstElementChild;
+    const selectedP = targetTask.firstElementChild.lastElementChild;
+    // Toggle select indicator
+    selectedP.classList.toggle("line-through");
+    selectedCircle.classList.toggle("bg-green-500");
+    saveData();
+  }
+});
+
+// save the data to the browser
+function saveData() {
+  localStorage.setItem("data", tasksContainer.innerHTML);
+}
+
+//call the data everytime the browser loads
+function getData() {
+  tasksContainer.innerHTML = localStorage.getItem("data");
+}
+getData();
