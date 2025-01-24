@@ -1,11 +1,13 @@
 // Weather API
 const apiKey = "286ac2dad268bd74da7bbbe81a445b2d";
-const searchBtn = document.querySelector(".searchBtn");
 const apiUrl = `https://api.openweathermap.org/data/2.5/weather?
 units=metric&q=`;
 
-const checkWeather = async (city) => {
-  console.log(city);
+const searchBtn = document.querySelector(".searchBtn");
+
+const checkWeather = async () => {
+  // get city input
+  const city = document.querySelector(".search input").value || "Bolinao";
   try {
     const response = await fetch(apiUrl + `${city}&appid=${apiKey}`);
     if (!response.ok) {
@@ -20,6 +22,19 @@ const checkWeather = async (city) => {
 };
 
 function renderData(data) {
+  // change image
+  if (data.weather[0].main == "Clouds") {
+    document.querySelector(".weather-icon").src = "images/clouds.png";
+  } else if (data.weather[0].main == "Clear") {
+    document.querySelector(".weather-icon").src = "images/clear.png";
+  } else if (data.weather[0].main == "Rain") {
+    document.querySelector(".weather-icon").src = "images/rain.png";
+  } else if (data.weather[0].main == "Drizzle") {
+    document.querySelector(".weather-icon").src = "images/drizzle.png";
+  } else if (data.weather[0].main == "Mist") {
+    document.querySelector(".weather-icon").src = "images/mist.png";
+  }
+
   //change City name
   document.querySelector(".city").textContent = data.name;
   //change temperature
@@ -31,4 +46,4 @@ function renderData(data) {
   document.querySelector(".wind").textContent = data.wind.speed + " km/h";
 }
 
-searchBtn.addEventListener("click", checkWeather((city = "Alaminos")));
+searchBtn.addEventListener("click", checkWeather);
