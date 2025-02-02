@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Password Generator</title>
+    <!-- tailwind -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <section
+      class="h-screen w-full bg-blue-100 flex items-center justify-center"
+    >
+      <div
+        class="text-center container w-[500px] bg-white shadow-xl rounded-lg p-10"
+      >
+        <h1 class="text-3xl text-slate-900 mb-5">Create a strong password</h1>
+        <button
+          class="button w-full bg-green-600 rounded-lg text-white text-md py-5 cursor-pointer"
+        >
+          Generate
+        </button>
+        <div class="password hidden mt-10">
+          <p class="pwd-text text-red-500 text-md">sds546432@4234dfgdf</p>
+          <p class="copy text-blue-900 mt-2 cursor-pointer">Copy</p>
+        </div>
+      </div>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>
