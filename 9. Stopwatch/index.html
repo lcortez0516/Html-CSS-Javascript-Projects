@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stopwatch</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <section
+      class="flex items-center justify-center h-screen w-full bg-slate-50"
+    >
+      <div
+        class="container w-1/2 flex flex-col justify-center items-center p-10 gap-5 bg-white rounded-lg shadow-xl"
+      >
+        <h1 class="text-slate-700 text-2xl">Stopwatch</h1>
+        <p class="timer text-slate-900 text-7xl">00 : 00 : 00</p>
+        <div class="btn-container mt-5">
+          <button class="btn-start py-3 px-5 cursor-pointer bg-green-500">
+            Start
+          </button>
+          <button class="btn-pause py-3 px-5 cursor-pointer bg-blue-500">
+            Pause
+          </button>
+          <button
+            class="btn-resume hidden py-3 px-5 cursor-pointer bg-slate-500"
+          >
+            Resume
+          </button>
+          <button
+            class="btn-restart py-3 px-5 cursor-pointer bg-yellow-500 text-slate-900"
+          >
+            Restart
+          </button>
+          <button
+            class="btn-stop py-3 px-5 cursor-pointer bg-red-500 text-slate-900"
+          >
+            Stop
+          </button>
+        </div>
+      </div>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>
